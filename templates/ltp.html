@@ -1,0 +1,23 @@
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <td>ID</td>
+      <td>Symbol</td>
+      <td>Traded Price</td>
+      <td>LTP</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    {% for script in scripts %}
+      <tr>
+      <td>{{script['id']}}</td>
+        <td>{{script['symbol']}}</td>
+        <td>{{script['traded_price']}}</td>
+        <td>{{script['ltp']}}</td>
+        <td><button type="button" class="btn btn-info">Reload</button></td>
+
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
