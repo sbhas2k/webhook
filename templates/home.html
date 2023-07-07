@@ -28,8 +28,9 @@
     </style>
   </head>
   <body>
+    {% include 'header.html' %}
     <div id='container' class='container'>
-        <h1 class='text-center mt-4 mb-4'>Demo - Sample site </h1>
+        <!-- <h1 class='text-center mt-4 mb-4'>Demo - Sample site </h1> -->
         <img class='img-fluid' id='banner' src='/static/flask_img.png' width=200 style='display: block;
     margin-left: auto;
     margin-right: auto;
@@ -45,5 +46,6 @@
         <button class='btn btn-primary btn-sm'>Contact-us</button>
       </div>
     </div>
+    {% include 'footer.html' %}
   </body>
 </html>
