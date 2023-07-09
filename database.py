@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine, text
 import os
 import logging
+import json
 
 conn_string = os.environ['DB_CONNECTION_STRING']
 
@@ -44,8 +45,14 @@ def application_submit(id, data):
   # NSERT INTO `webapp1`.`stock_update` (`id`, `updated_price`) VALUES ('10', '200');
   logging.info(f'id - {id} / price = { data["updated_price"] }')
   with engine.connect() as con:
-    query = text(
-      "INSERT INTO stock_update (id, updated_price) VALUES (:sid, :sprice)")
-    con.execute(query, {"sid": id, "sprice": data['updated_price']})
+    query = text("INSERT INTO stock_update (updated_price) VALUES ( :sprice)")
+    con.execute(query, {"sprice": data['updated_price']})
     # con.execute(
     # text('INSERT INTO stock_update (id, updated_price) VALUES (6, 200)'))
+
+
+def webhook_submit(data):
+  # data1 = json.loads(data)['stocks']
+  with engine.connect() as con:
+    query = text("INSERT INTO charink_post_req (request) VALUES ( :req)")
+    con.execute(query, {"req": data})

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
-from database import load_scripts_from_db, load_script_from_db, application_submit
+from database import load_scripts_from_db, load_script_from_db, application_submit, webhook_submit
 # from sqlalchemy import text
+import json
 
 app = Flask(__name__)
 
@@ -42,6 +43,17 @@ def submit_script(id):
   application_submit(id, data)
   # return jsonify(data)
   return render_template('application-submit.html', application=data)
+  # return "Not Found - " + id, 404
+
+
+@app.route("/webhook", methods=['post'])
+def submit_webhook():
+  # data = request.args
+  # data = request.form
+  data = request.data.decode('utf8')
+  webhook_submit(data)
+  # return jsonify(data)
+  return render_template('application-submit1.html', application=data)
   # return "Not Found - " + id, 404
 
 
