@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{script.symbol}} - Information </title>
+     {% include 'bootstrap.html' %}
+  </head>
+  <body>
+    {% include 'header.html' %}
+    {% include 'banner.html' %}
+    <div class="container-md">
+      <h3>Symbol:</h3>
+      <p>{{script.symbol}}</p>
+      <h3>Traded Price:</h3>
+      <p>{{script.tp}}</p>
+      <h3>Last Traded Price:</h3>
+      <p>{{script.ltp}}</p>
+    </div>
+   {% include 'footer.html'%}
+  </body>
+</html>
