@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, text
 import os
+import logging
 
 conn_string = os.environ['DB_CONNECTION_STRING']
 
@@ -37,3 +38,14 @@ def load_script_from_db(id):
   #   SCRIPTS.append(row._asdict())
 
   # return SCRIPTS
+
+
+def application_submit(id, data):
+  # NSERT INTO `webapp1`.`stock_update` (`id`, `updated_price`) VALUES ('10', '200');
+  logging.info(f'id - {id} / price = { data["updated_price"] }')
+  with engine.connect() as con:
+    query = text(
+      "INSERT INTO stock_update (id, updated_price) VALUES (:sid, :sprice)")
+    con.execute(query, {"sid": id, "sprice": data['updated_price']})
+    # con.execute(
+    # text('INSERT INTO stock_update (id, updated_price) VALUES (6, 200)'))

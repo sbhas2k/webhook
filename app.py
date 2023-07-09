@@ -1,5 +1,5 @@
-from flask import Flask, render_template, jsonify
-from database import load_scripts_from_db, load_script_from_db
+from flask import Flask, render_template, jsonify, request
+from database import load_scripts_from_db, load_script_from_db, application_submit
 # from sqlalchemy import text
 
 app = Flask(__name__)
@@ -33,6 +33,16 @@ def show_script_id(id):
   if not script:
     return "Not Found", 404
   return render_template('script.html', script=script)
+
+
+@app.route("/script/<id>/apply", methods=['post'])
+def submit_script(id):
+  # data = request.args
+  data = request.form
+  application_submit(id, data)
+  # return jsonify(data)
+  return render_template('application-submit.html', application=data)
+  # return "Not Found - " + id, 404
 
 
 if __name__ == "__main__":
