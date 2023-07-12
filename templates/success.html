@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Success</title>
+     {% include 'bootstrap.html' %}
+    <style>
+      table, th, td {
+          border: 1px solid black;
+        }
+      
+      
+      button {
+        color:blue;
+        align-content:center;
+        
+      }
+      #container {
+        max-width:60%;
+        margin:0 auto 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'header.html' %}
+    {% include 'banner.html' %}
+    <br><br><br>
+    
+      <h2> {{cnt}} records loaded into db successfully.</h2>
+      
+    {% include 'footer.html' %}
+  </body>
+</html>

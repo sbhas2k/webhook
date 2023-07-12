@@ -2,6 +2,7 @@ Flask
 gunicorn
 sqlalchemy
 pymysql
+pytz
 
 #mailjet
 #hcaptcha

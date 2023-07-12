@@ -1,7 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from database import load_scripts_from_db, load_script_from_db, application_submit, webhook_submit
-# from sqlalchemy import text
-import json
+from database import load_scripts_from_db, load_script_from_db, application_submit, webhook_submit, load_scripts_to_db
 
 app = Flask(__name__)
 
@@ -12,6 +10,16 @@ def hello_world():
   return render_template(
     'home.html',
     scripts=SCRIPTS,
+  )
+
+
+@app.route("/update_scripts")
+def load_scripts_db():
+  total_cnt = load_scripts_to_db()
+  # total_cnt = 100
+  return render_template(
+    'success.html',
+    cnt=total_cnt,
   )
 
 
@@ -50,7 +58,7 @@ def submit_script(id):
 def submit_webhook():
   # data = request.args
   # data = request.form
-  data = request.data.decode('utf8')
+  data = request.json
   webhook_submit(data)
   # return jsonify(data)
   return render_template('application-submit1.html', application=data)
